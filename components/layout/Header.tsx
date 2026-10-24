@@ -21,9 +21,9 @@ export default function Header() {
   const menuOpen = menuPath === pathname;
 
   return (
-    <header className="site-header fixed inset-x-0 top-0 z-50 border-b border-black/5 bg-white/80 text-ink backdrop-blur-xl backdrop-saturate-150">
+    <header className="site-header fixed inset-x-0 top-0 z-50 border-b border-black/5 bg-white/80 text-ink backdrop-blur-xl backdrop-saturate-150 touch-solid">
       <div className="container-x flex h-14 items-center justify-between">
-        <Link href="/" aria-label="Ayurveda home">
+        <Link href="/" aria-label="Mirasha home">
           <Logo />
         </Link>
 
@@ -47,7 +47,7 @@ export default function Header() {
               <path d="M9 10V6.5a3 3 0 0 1 6 0V10" />
             </svg>
             {ready && count > 0 && (
-              <span className="absolute right-0.5 top-0.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-blue px-1 text-[10px] font-semibold text-white">
+              <span className="absolute right-0.5 top-0.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-brand px-1 text-[10px] font-semibold text-white">
                 {count}
               </span>
             )}

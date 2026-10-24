@@ -57,7 +57,7 @@ async function ProductDetails({ params }: { params: PageProps<"/products/[slug]"
     ["Manufacturer", p.manufacturer],
     ["Country of origin", p.countryOfOrigin],
     ["Licence", p.ayushLicense],
-  ];
+  ].filter(([, v]) => v);
 
   return (
     <div className="pt-14">
@@ -70,7 +70,7 @@ async function ProductDetails({ params }: { params: PageProps<"/products/[slug]"
 
         <section className="grid gap-10 pt-8 lg:grid-cols-[1.1fr_1fr] lg:gap-20">
           <div className="lg:sticky lg:top-24 lg:self-start">
-            <div className="relative aspect-square overflow-hidden rounded-[36px] bg-bone">
+            <div className="relative aspect-[4/5] overflow-hidden rounded-[36px] bg-bone">
               <Image src={p.images[0]} alt={p.name} fill preload sizes="(min-width: 1024px) 55vw, 100vw" className="object-cover" />
             </div>
           </div>
@@ -79,9 +79,11 @@ async function ProductDetails({ params }: { params: PageProps<"/products/[slug]"
             {p.isBestseller && <p className="eyebrow">Bestseller</p>}
             <h1 className="headline mt-2 text-4xl md:text-5xl">{p.name}</h1>
             <p className="mt-3 text-xl text-muted">{p.tagline}</p>
-            <p className="mt-4 text-sm text-muted">
-              <span className="text-ink">★ {p.rating.toFixed(1)}</span> · {p.reviewCount.toLocaleString("en-IN")} reviews
-            </p>
+            {p.reviewCount > 0 && (
+              <p className="mt-4 text-sm text-muted">
+                <span className="text-ink">★ {p.rating.toFixed(1)}</span> · {p.reviewCount.toLocaleString("en-IN")} reviews
+              </p>
+            )}
 
             <div className="mt-10">
               <AddToCart product={p} />
@@ -104,7 +106,7 @@ async function ProductDetails({ params }: { params: PageProps<"/products/[slug]"
                 <ul className="space-y-3">
                   {p.benefits.map((b) => (
                     <li key={b} className="flex gap-3">
-                      <span className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-green" />
+                      <span className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-gold" />
                       <span className="leading-relaxed">{b}</span>
                     </li>
                   ))}

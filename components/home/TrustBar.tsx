@@ -1,7 +1,7 @@
 const ITEMS = [
-  { title: "GMP certified", body: "Made in a WHO-GMP facility" },
-  { title: "Lab tested", body: "Every batch, independently" },
-  { title: "AYUSH licensed", body: "Classical formulations" },
+  { title: "Premium ingredients", body: "Carefully sourced, high quality" },
+  { title: "Science-backed", body: "Modern nutrition science" },
+  { title: "Lab tested", body: "Quality checked every batch" },
   { title: "Free delivery", body: "On orders over ₹499" },
 ];
 

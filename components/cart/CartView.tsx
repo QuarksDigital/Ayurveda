@@ -18,7 +18,7 @@ export default function CartView() {
     return (
       <div className="mt-10">
         <p className="text-xl text-muted">Your bag is empty.</p>
-        <Link href="/shop" className="btn btn-blue mt-8">
+        <Link href="/shop" className="btn btn-brand mt-8">
           Continue shopping
         </Link>
       </div>
@@ -45,7 +45,7 @@ export default function CartView() {
               </div>
               <div className="mt-auto flex items-center gap-6 pt-4">
                 <QuantityStepper value={item.quantity} onChange={(q) => setQuantity(item.sku, q)} small />
-                <button type="button" onClick={() => remove(item.sku)} className="text-sm text-blue hover:underline">
+                <button type="button" onClick={() => remove(item.sku)} className="text-sm text-brand hover:underline">
                   Remove
                 </button>
               </div>
@@ -54,7 +54,7 @@ export default function CartView() {
         ))}
       </ul>
       <OrderSummary quote={quote} error={error}>
-        <Link href="/checkout" className="btn btn-blue mt-6 w-full">
+        <Link href="/checkout" className="btn btn-brand mt-6 w-full">
           Check out
         </Link>
       </OrderSummary>

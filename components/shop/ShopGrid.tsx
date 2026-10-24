@@ -52,7 +52,7 @@ export default function ShopGrid({ products, categories }: { products: Product[]
 
   return (
     <div className="container-x pb-32">
-      <div className="sticky top-14 z-20 -mx-5 border-b border-line/60 bg-white/85 px-5 py-4 backdrop-blur-xl md:-mx-8 md:px-8">
+      <div className="sticky top-14 z-20 -mx-5 border-b border-line/60 bg-white/85 px-5 py-4 backdrop-blur-xl touch-solid md:-mx-8 md:px-8">
         <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
           <nav className="-mx-1 flex gap-2 overflow-x-auto px-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden" aria-label="Categories">
             {[{ slug: "", name: "All" }, ...categories].map((c) => (

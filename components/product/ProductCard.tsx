@@ -27,7 +27,7 @@ export default function ProductCard({ product }: { product: Product }) {
       </Link>
 
       <div className="flex flex-1 flex-col px-1 pt-5">
-        <p className="text-xs font-medium text-green">{product.form}</p>
+        <p className="text-xs font-medium text-gold">{product.form}</p>
         <Link href={`/products/${product.slug}`} className="mt-1 text-lg font-semibold leading-snug tracking-tight hover:underline">
           {product.name}
         </Link>
@@ -43,10 +43,11 @@ export default function ProductCard({ product }: { product: Product }) {
             onClick={() =>
               add({ slug: product.slug, sku: v.sku, name: product.name, label: v.label, price: v.price, mrp: v.mrp, image: product.images[0] })
             }
-            className="rounded-full bg-bone px-4 py-2 text-sm font-medium text-blue transition-colors hover:bg-blue hover:text-white"
-            aria-label={`Add ${product.name} (${v.label}) to bag`}
+            disabled={v.stock <= 0}
+            className="rounded-full bg-bone px-4 py-2 text-sm font-medium text-brand transition-colors enabled:hover:bg-brand enabled:hover:text-white disabled:text-muted"
+            aria-label={v.stock > 0 ? `Add ${product.name} (${v.label}) to bag` : `${product.name} coming soon`}
           >
-            Add
+            {v.stock > 0 ? "Add" : "Soon"}
           </button>
         </div>
       </div>

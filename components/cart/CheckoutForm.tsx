@@ -28,7 +28,7 @@ export default function CheckoutForm() {
         <p className="mt-4 leading-relaxed text-muted">
           Your order is saved as pending payment. The payment gateway (Razorpay) will be connected here in the next phase.
         </p>
-        <Link href="/shop" className="btn btn-blue mt-8">
+        <Link href="/shop" className="btn btn-brand mt-8">
           Continue shopping
         </Link>
       </div>
@@ -39,7 +39,7 @@ export default function CheckoutForm() {
     return (
       <div className="mt-10">
         <p className="text-xl text-muted">Your bag is empty.</p>
-        <Link href="/shop" className="btn btn-blue mt-8">
+        <Link href="/shop" className="btn btn-brand mt-8">
           Continue shopping
         </Link>
       </div>
@@ -101,7 +101,7 @@ export default function CheckoutForm() {
       </div>
       <OrderSummary quote={quote} error={error}>
         {submitError && <p className="mt-4 rounded-2xl bg-white p-3 text-sm">{submitError}</p>}
-        <button type="submit" disabled={submitting || !quote} className="btn btn-blue mt-6 w-full">
+        <button type="submit" disabled={submitting || !quote} className="btn btn-brand mt-6 w-full">
           {submitting ? "Placing order…" : "Place order"}
         </button>
       </OrderSummary>

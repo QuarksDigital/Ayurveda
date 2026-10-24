@@ -22,7 +22,7 @@ export default function Spotlight({ product }: { product?: Product }) {
               {product.description}
             </p>
             <div data-reveal className="mt-8 flex flex-wrap items-center gap-6">
-              <Link href={`/products/${product.slug}`} className="btn btn-blue">
+              <Link href={`/products/${product.slug}`} className="btn btn-brand">
                 Buy · {formatPrice(v.price)}
               </Link>
               <Link href={`/products/${product.slug}`} className="link text-[17px]">

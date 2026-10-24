@@ -106,9 +106,11 @@ function CursorInner() {
   }, [reduceMotion]);
 
   return (
-    <div aria-hidden className="pointer-events-none fixed inset-0 z-[200] mix-blend-difference">
-      <div ref={ring} className="absolute left-0 top-0 h-9 w-9 rounded-full border border-white opacity-0 transition-opacity duration-300" />
-      <div ref={dot} className="absolute left-0 top-0 h-1.5 w-1.5 rounded-full bg-white opacity-0 transition-[opacity] duration-300" />
-    </div>
+    // Each piece is its own small fixed layer that blends with the page (mix-blend on a full-screen
+    // wrapper would make the browser re-blend the whole viewport every frame).
+    <>
+      <div ref={ring} aria-hidden className="pointer-events-none fixed left-0 top-0 z-[200] h-9 w-9 rounded-full border border-white opacity-0 mix-blend-difference transition-opacity duration-300 will-change-transform" />
+      <div ref={dot} aria-hidden className="pointer-events-none fixed left-0 top-0 z-[200] h-1.5 w-1.5 rounded-full bg-white opacity-0 mix-blend-difference transition-opacity duration-300 will-change-transform" />
+    </>
   );
 }

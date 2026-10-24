@@ -9,11 +9,11 @@ const DOSHAS = [
     qualities: "Light, dry, cold, mobile",
     imbalance: "Anxiety, poor sleep, dry skin, irregular digestion.",
     picks: [
-      { slug: "ashwagandha-root", name: "Ashwagandha" },
-      { slug: "shatavari", name: "Shatavari" },
+      { slug: "shilajit-resin", name: "Shilajit Resin" },
+      { slug: "magnesium-gummies", name: "Magnesium Gummies" },
     ],
-    accent: "text-blue",
-    tint: "bg-blue-soft",
+    accent: "text-brand",
+    tint: "bg-brand-soft",
   },
   {
     name: "Pitta",
@@ -21,11 +21,11 @@ const DOSHAS = [
     qualities: "Hot, sharp, oily, intense",
     imbalance: "Acidity, irritability, skin rashes, inflammation.",
     picks: [
-      { slug: "amla-juice", name: "Amla" },
-      { slug: "neem-purify", name: "Neem" },
+      { slug: "sea-buckthorn-juice", name: "Sea Buckthorn" },
+      { slug: "collagen-capsules", name: "Collagen" },
     ],
-    accent: "text-green",
-    tint: "bg-green-soft",
+    accent: "text-gold",
+    tint: "bg-gold-soft",
   },
   {
     name: "Kapha",
@@ -33,8 +33,8 @@ const DOSHAS = [
     qualities: "Heavy, slow, stable, cool",
     imbalance: "Sluggishness, weight gain, congestion.",
     picks: [
-      { slug: "tulsi-drops", name: "Tulsi" },
-      { slug: "haridra-curcumin", name: "Haridra" },
+      { slug: "apple-cider-vinegar-tablets", name: "Apple Cider" },
+      { slug: "acv-moringa-tablets", name: "ACV Moringa" },
     ],
     accent: "text-ink",
     tint: "bg-bone",

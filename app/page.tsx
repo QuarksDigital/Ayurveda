@@ -16,7 +16,7 @@ export default async function Home() {
     getCategories(),
     getProducts(),
   ]);
-  const spotlight = all.find((p) => p.slug === "himalayan-shilajit") ?? all[0];
+  const spotlight = all.find((p) => p.slug === "shilajit-resin") ?? all[0];
 
   return (
     <>

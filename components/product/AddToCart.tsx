@@ -27,7 +27,7 @@ export default function AddToCart({ product }: { product: Product }) {
                 onClick={() => setSku(x.sku)}
                 aria-pressed={x.sku === sku}
                 className={`flex items-center justify-between rounded-2xl border px-4 py-4 text-left transition-colors ${
-                  x.sku === sku ? "border-blue ring-1 ring-blue" : "border-line hover:border-muted"
+                  x.sku === sku ? "border-brand ring-1 ring-brand" : "border-line hover:border-muted"
                 }`}
               >
                 <span className="font-medium">{x.label}</span>
@@ -43,7 +43,7 @@ export default function AddToCart({ product }: { product: Product }) {
         {off > 0 && (
           <>
             <p className="text-muted line-through">{formatPrice(v.mrp)}</p>
-            <p className="text-sm font-medium text-green">Save {off}%</p>
+            <p className="text-sm font-medium text-gold">Save {off}%</p>
           </>
         )}
       </div>
@@ -60,7 +60,7 @@ export default function AddToCart({ product }: { product: Product }) {
               qty
             )
           }
-          className="btn btn-blue h-11 flex-1"
+          className="btn btn-brand h-11 flex-1"
         >
           {inStock ? "Add to bag" : "Out of stock"}
         </button>

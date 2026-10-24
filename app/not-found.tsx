@@ -7,7 +7,7 @@ export default function NotFound() {
       <h1 className="headline mt-3 text-5xl md:text-7xl">Page not found.</h1>
       <p className="mt-4 max-w-md text-lg text-muted">The page you&apos;re looking for doesn&apos;t exist or has moved.</p>
       <div className="mt-10 flex items-center gap-6">
-        <Link href="/" className="btn btn-blue">
+        <Link href="/" className="btn btn-brand">
           Go home
         </Link>
         <Link href="/shop" className="link text-[17px]">

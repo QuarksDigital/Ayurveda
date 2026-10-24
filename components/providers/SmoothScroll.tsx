@@ -8,6 +8,9 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { runScrollGuard } from "@/lib/scroll-guard";
 
 gsap.registerPlugin(ScrollTrigger);
+// Mobile browsers resize the viewport as the address bar shows/hides; re-measuring every
+// pinned section then makes the page jump mid-scroll.
+ScrollTrigger.config({ ignoreMobileResize: true });
 
 /** Keeps ScrollTrigger in step with Lenis and resets scroll on route change. */
 function ScrollSync() {

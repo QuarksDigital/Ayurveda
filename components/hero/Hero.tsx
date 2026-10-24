@@ -9,6 +9,7 @@ import { useGSAP } from "@gsap/react";
 import { useLenis } from "lenis/react";
 import { done, track } from "@/lib/preload";
 import { setScrollGuard } from "@/lib/scroll-guard";
+import Logo from "@/components/layout/Logo";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -145,19 +146,19 @@ export default function Hero() {
       <div className="absolute inset-0 flex items-center justify-center bg-paper">
         <div className="container-x text-center">
           <p data-reveal-item className="eyebrow">
-            Classical Ayurveda
+            Ayurvedic · Natural · Wellness
           </p>
           <h2 data-reveal-item className="headline mx-auto mt-4 max-w-4xl text-[clamp(2.6rem,7vw,5.5rem)]">
-            Ancient formulae.
+            A complete wellness universe.
             <br />
-            <span className="text-muted">Modern precision.</span>
+            <span className="text-muted">Now under one brand.</span>
           </h2>
           <p data-reveal-item className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-muted md:text-xl">
-            Herbs sourced from their native soil, purified by classical methods and verified in modern labs. Every
-            batch, every time.
+            Premium Ayurvedic and modern wellness formulations, made with high-quality ingredients and backed by
+            science.
           </p>
           <div data-reveal-item className="mt-10 flex flex-wrap items-center justify-center gap-4">
-            <Link href="/shop" className="btn btn-blue">
+            <Link href="/shop" className="btn btn-brand">
               Shop all products
             </Link>
             <a href="#concerns" className="link text-[17px]">
@@ -168,7 +169,7 @@ export default function Hero() {
       </div>
 
       {/* Layer 1 - the capsule */}
-      <div data-hero-canvas className="absolute inset-0 bg-[#060709]">
+      <div data-hero-canvas className="absolute inset-0 bg-black">
         <PillScene progress={progress} onPillClick={play} active={active} onReady={markSceneReady} />
       </div>
 
@@ -176,9 +177,12 @@ export default function Hero() {
       {/* Landscape (`side` variant): text left, capsule right (offset in PillScene). Portrait: text on top, capsule below. */}
       <div data-hero-copy className="pointer-events-none absolute inset-0 text-[#f5f5f7]">
         <div className="container-x flex h-full flex-col items-center pt-24 text-center side:items-start side:justify-center side:pt-0 side:text-left">
-          <h1 className="headline text-[clamp(3rem,6vw,5.75rem)]">Ayurveda.</h1>
-          <p className="mt-4 max-w-sm text-lg leading-snug text-white/60 md:text-xl">Classical formulations, measured to the milligram.</p>
-          <Link href="/shop" className="btn btn-blue pointer-events-auto mt-8">
+          <h1 className="text-[#c9a45c]">
+            <Logo fluid className="w-[clamp(200px,30vw,420px)]" />
+          </h1>
+          <p className="tagline mt-4 text-[clamp(1.25rem,2vw,1.75rem)] text-[#e8dcc0]">The Art of Inner Harmony</p>
+          <p className="mt-2 max-w-sm text-base text-white/55 md:text-lg">Premium Ayurvedic &amp; modern wellness.</p>
+          <Link href="/shop" className="btn btn-gold pointer-events-auto mt-8">
             Shop now
           </Link>
         </div>
@@ -198,7 +202,7 @@ export default function Hero() {
       <div data-hero-white className="pointer-events-none invisible absolute inset-0 bg-paper opacity-0" />
 
       {/* Layer 4 - black curtain that slides down */}
-      <div data-hero-black className="pointer-events-none invisible absolute inset-0 bg-[#060709] opacity-0" />
+      <div data-hero-black className="pointer-events-none invisible absolute inset-0 bg-black opacity-0" />
     </section>
   );
 }

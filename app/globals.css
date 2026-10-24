@@ -4,19 +4,20 @@
 @custom-variant side (@media (min-width: 768px) and (min-aspect-ratio: 6/5));
 
 /*
- * Brand tokens - change the palette here and the whole site follows.
- * Tailwind utilities: bg-ink, text-green, border-line, bg-bone…
+ * Mirasha brand tokens - change the palette here and the whole site follows.
+ * brand = forest green (buttons, links), gold = accent (labels, highlights).
+ * Tailwind utilities: bg-brand, text-gold, border-line, bg-bone…
  */
 :root {
-  --ink: #1d1d1f;
+  --ink: #1b1d1c;
   --paper: #ffffff;
-  --bone: #f5f5f7;
-  --line: #d2d2d7;
-  --muted: #6e6e73;
-  --green: #17784a;
-  --green-soft: #e9f3ed;
-  --blue: #1f4fd8;
-  --blue-soft: #ecf1fd;
+  --bone: #f6f5f1;
+  --line: #d9d6cd;
+  --muted: #6b6f6c;
+  --gold: #9a7631; /* darkened from the foil gold so it stays readable on white */
+  --gold-soft: #f5eedf;
+  --brand: #1a4331;
+  --brand-soft: #e8efea;
 }
 
 @theme inline {
@@ -25,10 +26,10 @@
   --color-bone: var(--bone);
   --color-line: var(--line);
   --color-muted: var(--muted);
-  --color-green: var(--green);
-  --color-green-soft: var(--green-soft);
-  --color-blue: var(--blue);
-  --color-blue-soft: var(--blue-soft);
+  --color-gold: var(--gold);
+  --color-gold-soft: var(--gold-soft);
+  --color-brand: var(--brand);
+  --color-brand-soft: var(--brand-soft);
   --font-sans: var(--font-inter);
 }
 
@@ -47,7 +48,7 @@ body {
 }
 
 ::selection {
-  background: var(--blue-soft);
+  background: var(--brand-soft);
 }
 
 /* Lenis */
@@ -82,10 +83,18 @@ html.lenis body {
     line-height: 1.05;
   }
 
+  /* brand tagline, set in italic serif as on the packaging */
+  .tagline {
+    font-family: var(--font-serif), Georgia, serif;
+    font-style: italic;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+  }
+
   .eyebrow {
     font-size: 0.95rem;
     font-weight: 600;
-    color: var(--green);
+    color: var(--gold);
     letter-spacing: -0.01em;
   }
 
@@ -117,12 +126,19 @@ html.lenis body {
   .btn-primary:hover:not(:disabled) {
     background: #000;
   }
-  .btn-blue {
-    background: var(--blue);
+  .btn-brand {
+    background: var(--brand);
     color: var(--paper);
   }
-  .btn-blue:hover:not(:disabled) {
+  .btn-brand:hover:not(:disabled) {
     opacity: 0.9;
+  }
+  .btn-gold {
+    background: #c9a45c;
+    color: #111;
+  }
+  .btn-gold:hover:not(:disabled) {
+    background: #d7b673;
   }
   .btn-ghost {
     border: 1px solid var(--line);
@@ -134,7 +150,7 @@ html.lenis body {
   }
 
   .link {
-    color: var(--blue);
+    color: var(--brand);
     font-weight: 500;
   }
   .link:hover {
@@ -156,8 +172,8 @@ html.lenis body {
       box-shadow 0.2s ease;
   }
   .field:focus {
-    border-color: var(--blue);
-    box-shadow: 0 0 0 4px var(--blue-soft);
+    border-color: var(--brand);
+    box-shadow: 0 0 0 4px var(--brand-soft);
   }
 }
 
@@ -169,7 +185,7 @@ html.lenis body {
     border-color 0.4s ease;
 }
 html[data-hero="on"] .site-header {
-  background: rgb(10 11 14 / 0.55);
+  background: rgb(0 0 0 / 0.55);
   color: #f5f5f7;
   border-color: rgb(255 255 255 / 0.08);
 }
@@ -183,6 +199,18 @@ html.has-custom-cursor * {
 }
 html.has-custom-cursor :is(input, textarea, [contenteditable="true"]) {
   cursor: text !important;
+}
+
+/* Frosted bars are costly to repaint while scrolling on phones: use a solid fill there */
+@media (pointer: coarse) {
+  .touch-solid {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background-color: rgb(255 255 255 / 0.97);
+  }
+  html[data-hero="on"] .site-header.touch-solid {
+    background-color: rgb(0 0 0 / 0.9);
+  }
 }
 
 /* Loading screen holds the page still */

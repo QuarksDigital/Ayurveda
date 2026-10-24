@@ -11,7 +11,7 @@ export default function Newsletter() {
         <h2 className="headline text-4xl md:text-5xl">Seasonal wisdom, in your inbox.</h2>
         <p className="mt-4 text-lg text-muted">Ritucharya guides, dosha tips and early access to new formulations. Plus 10% off your first order.</p>
         {done ? (
-          <p className="mt-10 text-lg font-medium text-green">Thanks - you&apos;re on the list.</p>
+          <p className="mt-10 text-lg font-medium text-gold">Thanks - you&apos;re on the list.</p>
         ) : (
           <form
             className="mx-auto mt-10 flex max-w-md flex-col gap-3 sm:flex-row"

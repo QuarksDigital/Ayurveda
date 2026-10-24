@@ -3,7 +3,7 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
 import type { CartItem } from "@/lib/types";
 
-const STORAGE_KEY = "ayurveda-cart-v1";
+const STORAGE_KEY = "mirasha-cart-v1";
 const MAX_QTY = 20;
 
 interface CartContextValue {

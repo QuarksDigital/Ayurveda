@@ -1,10 +1,7 @@
 "use client";
 
-import { useMemo, useRef, useState } from "react";
+import { lazy, Suspense, useEffect, useMemo, useRef, useState } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { Environment, Lightformer } from "@react-three/drei";
-import { DepthOfField, EffectComposer } from "@react-three/postprocessing";
-import type { DepthOfFieldEffect } from "postprocessing";
 import * as THREE from "three";
 
 /*
@@ -14,9 +11,11 @@ import * as THREE from "three";
  * Driven by `progress` (0 → 1) from the hero ScrollTrigger:
  *   0.00–0.16  cap and body slide apart along the axis
  *   0.02–0.48  as soon as the halves part, pellets gather at the centre and spread into the lens
- *   0.12–0.26  focus pulls onto the near pellets; the capsule behind blurs
+ *   0.12–0.26  focus pulls onto the near pellets; the capsule behind blurs (PelletFocus)
  *   0.28–0.45  empty shells drift out of frame (the hero fades to white over 0.40–0.50)
  */
+
+const PelletFocus = lazy(() => import("./PelletFocus"));
 
 const R = 1; // body outer radius
 const WALL = 0.03;
@@ -26,14 +25,18 @@ const BODY_STRAIGHT = 1.9; // body tip at -2.9
 const BODY_INTO_CAP = 0.5; // body rim hidden 0.5 inside the cap
 const CAMERA_Z = 11;
 const FOV = 32;
+const BODY_GREEN = "#1a4331"; // Mirasha brand green (same as the footer)
 
 const OPEN_END = 0.16; // halves fully apart
 const EMIT_START = 0.02; // pellets start leaving as the halves begin to part
 const EMIT_SPAN = 0.22; // pellets leave over this window, nearest-the-opening first
 const DRAIN = 0.04; // inside the shell → out of the opening
 const FLY = 0.2; // opening → lens
-const BLUR_START = 0.12; // capsule starts to defocus as the first pellets get close
-const BLUR_FULL = 0.26;
+
+// Phones and touch tablets get a lighter scene: fewer pellets, lower pixel ratio,
+// half-resolution glass pass. Module is client-only (loaded with ssr: false).
+const LOW_POWER = window.matchMedia("(pointer: coarse)").matches;
+const PACK_ATTEMPTS = LOW_POWER ? 40000 : 100000; // per half; more attempts → denser fill
 
 const clamp01 = (x: number) => Math.min(1, Math.max(0, x));
 const smoothstep = (a: number, b: number, x: number) => {
@@ -68,7 +71,7 @@ function shellGeometry(outer: number, straight: number, rimY: number) {
     const a = (i / steps) * (Math.PI / 2);
     pts.push(new THREE.Vector2(Math.max(1e-4, Math.sin(a) * inner), straight + Math.cos(a) * inner));
   }
-  const geo = new THREE.LatheGeometry(pts, 128);
+  const geo = new THREE.LatheGeometry(pts, LOW_POWER ? 72 : 128);
   geo.computeVertexNormals();
   return geo;
 }
@@ -76,7 +79,7 @@ function shellGeometry(outer: number, straight: number, rimY: number) {
 /** Slightly irregular pellet - real beads are never perfect spheres. */
 function pelletGeometry() {
   // indexed sphere → smooth normals after displacement (an icosahedron here shades faceted)
-  const geo = new THREE.SphereGeometry(1, 28, 20);
+  const geo = LOW_POWER ? new THREE.SphereGeometry(1, 18, 12) : new THREE.SphereGeometry(1, 28, 20);
   const pos = geo.attributes.position as THREE.BufferAttribute;
   const v = new THREE.Vector3();
   for (let i = 0; i < pos.count; i++) {
@@ -89,62 +92,108 @@ function pelletGeometry() {
   return geo;
 }
 
-/** Random packing of pellets of varying size inside one half. */
+/**
+ * Random packing of pellets of varying size inside one half. Uses a numeric spatial grid
+ * (linked list per cell) — ~12× faster than string-keyed maps, which kept the main thread
+ * busy for hundreds of ms on load.
+ */
 function packHalf(
   rand: () => number,
   { radius, yMin, yMax, domeY, target }: { radius: number; yMin: number; yMax: number; domeY: number; target: number }
 ) {
   const rMin = 0.082, rMax = 0.112;
   const cell = rMax * 2;
-  const grid = new Map<string, number[]>();
-  const pts: number[] = []; // x, y, z, r
-  const inside = (x: number, y: number, z: number, r: number) => {
-    const lim = radius - r;
-    const rr = x * x + z * z;
-    if (y - r < yMin || y > yMax) return false;
-    if (y <= domeY) return rr <= lim * lim;
-    const dy = y - domeY;
-    return rr + dy * dy <= lim * lim;
-  };
-  for (let attempt = 0; attempt < target * 120 && pts.length / 4 < target; attempt++) {
+  const nx = Math.ceil((2 * radius) / cell) + 1, ny = Math.ceil((yMax - yMin) / cell) + 1, nz = nx;
+  const head = new Int32Array(nx * ny * nz).fill(-1); // first point in each cell
+  const next = new Int32Array(target).fill(-1); // next point in the same cell
+  const pts = new Float32Array(target * 4); // x, y, z, r
+  let n = 0;
+  for (let attempt = 0; attempt < PACK_ATTEMPTS && n < target; attempt++) {
     const r = rMin + rand() * (rMax - rMin);
     const x = (rand() * 2 - 1) * radius;
     const z = (rand() * 2 - 1) * radius;
     const y = yMin + rand() * (yMax - yMin);
-    if (!inside(x, y, z, r)) continue;
-    const gx = Math.floor(x / cell), gy = Math.floor(y / cell), gz = Math.floor(z / cell);
+    const lim = radius - r;
+    const rr = x * x + z * z;
+    if (y - r < yMin) continue;
+    if (y <= domeY ? rr > lim * lim : rr + (y - domeY) ** 2 > lim * lim) continue;
+    const gx = Math.floor((x + radius) / cell), gy = Math.floor((y - yMin) / cell), gz = Math.floor((z + radius) / cell);
     let ok = true;
-    for (let dx = -1; dx <= 1 && ok; dx++)
-      for (let dy = -1; dy <= 1 && ok; dy++)
+    for (let dx = -1; dx <= 1 && ok; dx++) {
+      const cx = gx + dx;
+      if (cx < 0 || cx >= nx) continue;
+      for (let dy = -1; dy <= 1 && ok; dy++) {
+        const cy = gy + dy;
+        if (cy < 0 || cy >= ny) continue;
         for (let dz = -1; dz <= 1 && ok; dz++) {
-          for (const idx of grid.get(`${gx + dx}|${gy + dy}|${gz + dz}`) ?? []) {
-            const ex = pts[idx] - x, ey = pts[idx + 1] - y, ez = pts[idx + 2] - z;
-            const min = (pts[idx + 3] + r) * 0.98;
+          const cz = gz + dz;
+          if (cz < 0 || cz >= nz) continue;
+          for (let j = head[(cx * ny + cy) * nz + cz]; j !== -1; j = next[j]) {
+            const ex = pts[j * 4] - x, ey = pts[j * 4 + 1] - y, ez = pts[j * 4 + 2] - z;
+            const min = (pts[j * 4 + 3] + r) * 0.98;
             if (ex * ex + ey * ey + ez * ez < min * min) { ok = false; break; }
           }
         }
+      }
+    }
     if (!ok) continue;
-    const k = `${gx}|${gy}|${gz}`;
-    if (!grid.has(k)) grid.set(k, []);
-    grid.get(k)!.push(pts.length);
-    pts.push(x, y, z, r);
+    const c = (gx * ny + gy) * nz + gz;
+    next[n] = head[c];
+    head[c] = n;
+    pts.set([x, y, z, r], n * 4);
+    n++;
   }
-  return pts;
+  return pts.subarray(0, n * 4);
 }
 
 function makeBackdrop() {
   const c = document.createElement("canvas");
-  c.width = c.height = 1024;
+  c.width = c.height = LOW_POWER ? 512 : 1024;
+  const s = c.width / 1024;
   const g = c.getContext("2d")!;
   // Opaque so the glass cap's transmission pass refracts it.
-  const grad = g.createRadialGradient(512, 470, 0, 512, 512, 560);
-  grad.addColorStop(0, "#22262f");
-  grad.addColorStop(0.5, "#121419");
-  grad.addColorStop(1, "#060709");
+  const grad = g.createRadialGradient(512 * s, 470 * s, 0, 512 * s, 512 * s, 560 * s);
+  grad.addColorStop(0, "#1c1b19");
+  grad.addColorStop(0.5, "#0b0b0a");
+  grad.addColorStop(1, "#000000");
   g.fillStyle = grad;
-  g.fillRect(0, 0, 1024, 1024);
+  g.fillRect(0, 0, c.width, c.height);
   const tex = new THREE.CanvasTexture(c);
   tex.colorSpace = THREE.SRGBColorSpace;
+  return tex;
+}
+
+/** Subtle mottled gelatin texture in the brand green, so the body isn't a flat plastic colour. */
+function makeGelatinTexture() {
+  const size = 256;
+  const c = document.createElement("canvas");
+  c.width = c.height = size;
+  const g = c.getContext("2d")!;
+  g.fillStyle = BODY_GREEN;
+  g.fillRect(0, 0, size, size);
+  const rand = mulberry32(3);
+  // soft lighter blotches
+  for (let i = 0; i < 70; i++) {
+    const x = rand() * size, y = rand() * size, r = 10 + rand() * 36;
+    const blot = g.createRadialGradient(x, y, 0, x, y, r);
+    blot.addColorStop(0, `rgba(120, 190, 150, ${0.05 + rand() * 0.06})`);
+    blot.addColorStop(1, "rgba(120, 190, 150, 0)");
+    g.fillStyle = blot;
+    g.fillRect(x - r, y - r, r * 2, r * 2);
+  }
+  // fine grain
+  const img = g.getImageData(0, 0, size, size);
+  for (let i = 0; i < img.data.length; i += 4) {
+    const k = (rand() - 0.5) * 10;
+    img.data[i] += k;
+    img.data[i + 1] += k;
+    img.data[i + 2] += k;
+  }
+  g.putImageData(img, 0, 0);
+  const tex = new THREE.CanvasTexture(c);
+  tex.colorSpace = THREE.SRGBColorSpace;
+  tex.wrapS = tex.wrapT = THREE.RepeatWrapping;
+  tex.repeat.set(2, 3);
   return tex;
 }
 
@@ -160,6 +209,7 @@ function Capsule({ progress, onPillClick }: SceneProps) {
   const body = useRef<THREE.Group>(null!);
   const beads = useRef<THREE.InstancedMesh>(null!);
   const beadMat = useRef<THREE.MeshPhysicalMaterial>(null!);
+  const lastP = useRef(-1);
   const [hovered, setHovered] = useState(false);
   const { size, viewport } = useThree();
 
@@ -167,29 +217,33 @@ function Capsule({ progress, onPillClick }: SceneProps) {
   const bodyGeo = useMemo(() => shellGeometry(R, BODY_STRAIGHT, -BODY_INTO_CAP), []);
   const pelletGeo = useMemo(() => pelletGeometry(), []);
   const backdrop = useMemo(() => makeBackdrop(), []);
+  const gelatin = useMemo(() => makeGelatinTexture(), []);
 
   const data = useMemo(() => {
     const rand = mulberry32(11);
     // Cap pellets fill the cap to its rim (those inside the body's end are hidden by it while closed);
     // body pellets fill the body (pill-space, body points down).
     const capPts = packHalf(rand, { radius: CAP_R - WALL - 0.01, yMin: 0.02, yMax: CAP_STRAIGHT + CAP_R, domeY: CAP_STRAIGHT, target: 1100 });
-    const bodyRaw = packHalf(rand, { radius: R - WALL - 0.01, yMin: -BODY_INTO_CAP, yMax: BODY_STRAIGHT + R, domeY: BODY_STRAIGHT, target: 1100 });
-    for (let i = 1; i < bodyRaw.length; i += 4) bodyRaw[i] = -bodyRaw[i]; // flip into the body half
-    const all = [...capPts, ...bodyRaw];
-    const count = all.length / 4;
+    const bodyPts = packHalf(rand, { radius: R - WALL - 0.01, yMin: -BODY_INTO_CAP, yMax: BODY_STRAIGHT + R, domeY: BODY_STRAIGHT, target: 1100 });
     const capCount = capPts.length / 4;
+    const count = capCount + bodyPts.length / 4;
 
     const start = new Float32Array(count * 3);
     const radius = new Float32Array(count);
     const side = new Float32Array(count);
-    const order: { i: number; d: number }[] = [];
+    const order = new Array<{ i: number; d: number }>(count);
     for (let i = 0; i < count; i++) {
-      start.set([all[i * 4], all[i * 4 + 1], all[i * 4 + 2]], i * 3);
-      radius[i] = all[i * 4 + 3];
-      side[i] = i < capCount ? 1 : -1;
+      const isCap = i < capCount;
+      const src = isCap ? capPts : bodyPts;
+      const o = (isCap ? i : i - capCount) * 4;
+      const y = isCap ? src[o + 1] : -src[o + 1]; // flip body pellets into the body half
+      start[i * 3] = src[o];
+      start[i * 3 + 1] = y;
+      start[i * 3 + 2] = src[o + 2];
+      radius[i] = src[o + 3];
+      side[i] = isCap ? 1 : -1;
       // distance to its half's opening (cap opens at y=0, body at y=+BODY_INTO_CAP)
-      const y = all[i * 4 + 1];
-      order.push({ i, d: (side[i] > 0 ? y : BODY_INTO_CAP - y) + rand() * 0.25 });
+      order[i] = { i, d: (isCap ? y : BODY_INTO_CAP - y) + rand() * 0.25 };
     }
     order.sort((a, b) => a.d - b.d);
     const delay = new Float32Array(count);
@@ -206,14 +260,15 @@ function Capsule({ progress, onPillClick }: SceneProps) {
     const colors = new Float32Array(count * 3);
     const q = new THREE.Quaternion();
     const e = new THREE.Euler();
+    const v = new THREE.Vector3();
     for (let i = 0; i < count; i++) {
       depth[i] = Math.pow(rand(), 0.55);
       ndc[i * 2] = rand() * 2.3 - 1.15;
       ndc[i * 2 + 1] = rand() * 2.3 - 1.15;
-      const a = new THREE.Vector3(rand() - 0.5, rand() - 0.5, rand() - 0.5).normalize();
-      arc.set([a.x * 0.9, a.y * 0.9, a.z * 0.9], i * 3);
-      const ax = new THREE.Vector3(rand() - 0.5, rand() - 0.5, rand() - 0.5).normalize();
-      axis.set([ax.x, ax.y, ax.z], i * 3);
+      v.set(rand() - 0.5, rand() - 0.5, rand() - 0.5).normalize().multiplyScalar(0.9);
+      arc.set([v.x, v.y, v.z], i * 3);
+      v.set(rand() - 0.5, rand() - 0.5, rand() - 0.5).normalize();
+      axis.set([v.x, v.y, v.z], i * 3);
       q.setFromEuler(e.set(rand() * 6.28, rand() * 6.28, rand() * 6.28));
       quat0.set([q.x, q.y, q.z, q.w], i * 4);
       stretch.set([0.94 + rand() * 0.1, 0.92 + rand() * 0.1, 0.95 + rand() * 0.08], i * 3);
@@ -270,7 +325,6 @@ function Capsule({ progress, onPillClick }: SceneProps) {
     const idle = 1 - open;
     const t = state.clock.elapsedTime;
 
-    // continuous tumble around X, slowing (not stopping) once open
     // spin around the vertical axis: cap stays on top, swinging left ↔ right
     tumble.current.rotation.y += dt * (0.6 * idle + 0.12);
     tumble.current.position.x = baseX * idle;
@@ -283,6 +337,11 @@ function Capsule({ progress, onPillClick }: SceneProps) {
     const drift = smoothstep(0.28, 0.45, p) * 9;
     cap.current.position.y = sep + drift;
     body.current.position.y = -(sep + drift);
+
+    // Before any pellet starts flying their pill-space positions depend only on `p`, so
+    // there's nothing to update while the capsule is just spinning.
+    if (p === lastP.current && p < EMIT_START + DRAIN) return;
+    lastP.current = p;
 
     pill.current.updateWorldMatrix(true, false);
     tmp.inv.copy(pill.current.matrixWorld).invert();
@@ -372,11 +431,14 @@ function Capsule({ progress, onPillClick }: SceneProps) {
             <group ref={body}>
               <mesh geometry={bodyGeo} rotation={[Math.PI, 0, 0]}>
                 <meshPhysicalMaterial
-                  color="#1740d6"
+                  map={gelatin}
                   metalness={0.35}
                   roughness={0.2}
                   clearcoat={1}
                   clearcoatRoughness={0.03}
+                  sheen={0.6}
+                  sheenRoughness={0.45}
+                  sheenColor="#8fd0ab"
                   envMapIntensity={1.3}
                   side={THREE.DoubleSide}
                 />
@@ -401,7 +463,65 @@ function Capsule({ progress, onPillClick }: SceneProps) {
   );
 }
 
-/** Calls `onReady` once a few frames have rendered (shaders compiled, environment baked). */
+/**
+ * Soft studio lighting for reflections: a large top softbox, two strip lights, a faint
+ * front fill and a back rim, baked once into a PMREM environment map. Replaces drei's
+ * <Environment>, which pulled HDR/EXR loaders into the bundle that this scene never uses.
+ */
+function bakeStudio(gl: THREE.WebGLRenderer) {
+  const env = new THREE.Scene();
+  const plane = new THREE.PlaneGeometry();
+  const circle = new THREE.CircleGeometry(0.5, 32);
+  const add = (geo: THREE.BufferGeometry, intensity: number, color: string, pos: [number, number, number], scale: [number, number, number]) => {
+    const mat = new THREE.MeshBasicMaterial({ color: new THREE.Color(color).multiplyScalar(intensity), side: THREE.DoubleSide, toneMapped: false });
+    const mesh = new THREE.Mesh(geo, mat);
+    mesh.position.set(...pos);
+    mesh.scale.set(...scale);
+    mesh.lookAt(0, 0, 0); // every light faces the capsule
+    env.add(mesh);
+  };
+  add(plane, 2.2, "#ffffff", [0, 6, 1], [14, 5, 1]);
+  add(plane, 3, "#ffffff", [-7, 0.5, 2], [10, 1.4, 1]);
+  add(plane, 1.6, "#dfe8ff", [7, 0, 1], [10, 0.8, 1]);
+  add(circle, 0.5, "#ffffff", [0, 0, 9], [6, 6, 1]);
+  add(plane, 1.2, "#ffffff", [0, -1, -8], [16, 2, 1]);
+
+  const pmrem = new THREE.PMREMGenerator(gl);
+  const target = pmrem.fromScene(env, 0, 0.1, 100);
+  pmrem.dispose();
+  env.traverse((o) => (o as THREE.Mesh).material && ((o as THREE.Mesh).material as THREE.Material).dispose());
+  plane.dispose();
+  circle.dispose();
+  return target;
+}
+
+function StudioEnvironment() {
+  const gl = useThree((s) => s.gl);
+  const target = useMemo(() => bakeStudio(gl), [gl]);
+  useEffect(() => () => target.dispose(), [target]);
+  return <primitive object={target.texture} attach="environment" />;
+}
+
+/**
+ * Compiles every shader in the scene asynchronously (KHR_parallel_shader_compile) before
+ * the first frame is drawn, instead of one long blocking compile inside the first render.
+ * Rendered last so the environment map is already in place.
+ */
+function Precompile({ onDone }: { onDone: () => void }) {
+  const { gl, scene, camera } = useThree();
+  useEffect(() => {
+    let cancelled = false;
+    gl.compileAsync(scene, camera)
+      .catch(() => {}) // fall back to compiling on first render
+      .then(() => !cancelled && onDone());
+    return () => {
+      cancelled = true;
+    };
+  }, [gl, scene, camera, onDone]);
+  return null;
+}
+
+/** Calls `onReady` once a few frames have rendered (environment baked, first frames on screen). */
 function FirstFrames({ onReady }: { onReady: () => void }) {
   const frames = useRef(0);
   useFrame(() => {
@@ -410,52 +530,38 @@ function FirstFrames({ onReady }: { onReady: () => void }) {
   return null;
 }
 
-/**
- * Depth of field: as the pellets reach the lens, focus pulls from the capsule (~CAMERA_Z away)
- * onto the near pellets, so the capsule behind softens. Off until the burst, so the idle
- * capsule renders without the post-processing pass.
- */
-function PelletFocus({ progress }: { progress: React.RefObject<number> }) {
-  const dof = useRef<DepthOfFieldEffect>(null);
-  const [on, setOn] = useState(false);
-  useFrame(() => {
-    const p = progress.current ?? 0;
-    const k = smoothstep(BLUR_START, BLUR_FULL, p);
-    if ((k > 0) !== on) setOn(k > 0);
-    if (!dof.current) return;
-    dof.current.cocMaterial.focusDistance = THREE.MathUtils.lerp(CAMERA_Z, 1.6, k);
-    dof.current.cocMaterial.focusRange = THREE.MathUtils.lerp(6, 1.8, k);
-    dof.current.bokehScale = k * 7;
-  });
-  return (
-    <EffectComposer enabled={on} multisampling={4}>
-      <DepthOfField ref={dof} focusDistance={CAMERA_Z} focusRange={6} bokehScale={0} resolutionScale={0.5} />
-    </EffectComposer>
-  );
-}
-
 export default function PillScene({ progress, onPillClick, active, onReady }: SceneProps & { active: boolean; onReady: () => void }) {
+  const [compiled, setCompiled] = useState(false);
+  const [framesDrawn, setFramesDrawn] = useState(false);
+  const markCompiled = useMemo(() => () => setCompiled(true), []);
+  const markFramesDrawn = useMemo(() => () => setFramesDrawn(true), []);
+
+  // Startup, all behind the loading screen: compile shaders → draw the first frames → mount and
+  // warm the depth-of-field pass → tell the loader we're ready (onReady). Phones skip the
+  // depth of field: its warm-up costs seconds on a mobile CPU for a subtle effect on a small screen.
   return (
     <Canvas
-      frameloop={active ? "always" : "never"}
-      dpr={[1, 1.75]}
+      frameloop={active && compiled ? "always" : "never"}
+      dpr={LOW_POWER ? [1, 1.5] : [1, 1.75]}
       camera={{ position: [0, 0, CAMERA_Z], fov: FOV, near: 0.1, far: 60 }}
-      gl={{ antialias: true, powerPreference: "high-performance", toneMappingExposure: 1.05 }}
+      gl={{ antialias: !LOW_POWER, powerPreference: "high-performance", toneMappingExposure: 1.05 }}
+      onCreated={({ gl }) => {
+        // the glass cap re-renders the scene behind it; half resolution is plenty on phones
+        if (LOW_POWER) gl.transmissionResolutionScale = 0.5;
+      }}
     >
       <ambientLight intensity={0.35} />
       <directionalLight position={[3, 6, 5]} intensity={1.8} />
       <directionalLight position={[-5, -3, 2]} intensity={0.4} color="#c9d6ff" />
       <Capsule progress={progress} onPillClick={onPillClick} />
-      <FirstFrames onReady={onReady} />
-      <PelletFocus progress={progress} />
-      <Environment resolution={512} frames={1}>
-        {/* soft studio: large top softbox, two strip lights, faint rim */}
-        <Lightformer form="rect" intensity={2.2} position={[0, 6, 1]} rotation-x={Math.PI / 2} scale={[14, 5, 1]} />
-        <Lightformer form="rect" intensity={3} position={[-7, 0.5, 2]} rotation-y={Math.PI / 2} scale={[10, 1.4, 1]} />
-        <Lightformer form="rect" intensity={1.6} position={[7, 0, 1]} rotation-y={-Math.PI / 2} scale={[10, 0.8, 1]} color="#dfe8ff" />
-        <Lightformer form="circle" intensity={0.5} position={[0, 0, 9]} scale={6} />
-        <Lightformer form="rect" intensity={1.2} position={[0, -1, -8]} scale={[16, 2, 1]} />
-      </Environment>
+      <StudioEnvironment />
+      {framesDrawn && !LOW_POWER && (
+        <Suspense fallback={null}>
+          <PelletFocus progress={progress} onWarm={onReady} />
+        </Suspense>
+      )}
+      <FirstFrames onReady={LOW_POWER ? onReady : markFramesDrawn} />
+      <Precompile onDone={markCompiled} />
     </Canvas>
   );
 }

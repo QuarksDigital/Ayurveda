@@ -50,7 +50,7 @@ export default function CartDrawer() {
               {remaining > 0 ? `Add ${formatPrice(remaining)} more for free delivery.` : "You've got free delivery."}
             </p>
             <div className="mt-2 h-1 overflow-hidden rounded-full bg-bone">
-              <div className="h-full rounded-full bg-green transition-all" style={{ width: `${Math.min(100, (subtotal / FREE_SHIPPING_ABOVE) * 100)}%` }} />
+              <div className="h-full rounded-full bg-gold transition-all" style={{ width: `${Math.min(100, (subtotal / FREE_SHIPPING_ABOVE) * 100)}%` }} />
             </div>
           </div>
         )}
@@ -59,7 +59,7 @@ export default function CartDrawer() {
           {items.length === 0 ? (
             <div className="flex h-full flex-col items-center justify-center gap-5 text-center">
               <p className="text-xl font-semibold">Your bag is empty.</p>
-              <Link href="/shop" onClick={close} className="btn btn-blue">
+              <Link href="/shop" onClick={close} className="btn btn-brand">
                 Continue shopping
               </Link>
             </div>
@@ -80,7 +80,7 @@ export default function CartDrawer() {
                     <p className="text-sm text-muted">{item.label}</p>
                     <div className="mt-3 flex items-center justify-between">
                       <QuantityStepper value={item.quantity} onChange={(q) => setQuantity(item.sku, q)} small />
-                      <button type="button" onClick={() => remove(item.sku)} className="text-sm text-blue hover:underline">
+                      <button type="button" onClick={() => remove(item.sku)} className="text-sm text-brand hover:underline">
                         Remove
                       </button>
                     </div>
@@ -97,10 +97,10 @@ export default function CartDrawer() {
               <span className="text-muted">Subtotal</span>
               <span className="text-xl font-semibold">{formatPrice(subtotal)}</span>
             </div>
-            <Link href="/checkout" onClick={close} className="btn btn-blue w-full">
+            <Link href="/checkout" onClick={close} className="btn btn-brand w-full">
               Check out
             </Link>
-            <Link href="/cart" onClick={close} className="mt-3 block text-center text-sm text-blue hover:underline">
+            <Link href="/cart" onClick={close} className="mt-3 block text-center text-sm text-brand hover:underline">
               View bag
             </Link>
           </div>
