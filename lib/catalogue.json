@@ -1,0 +1,1227 @@
+{
+  "products": [
+    {
+      "brand": "Ayurveda",
+      "manufacturer": "Ayurveda Wellness Pvt. Ltd. (placeholder)",
+      "countryOfOrigin": "India",
+      "ayushLicense": "AYUSH-XX-0000 (placeholder)",
+      "gstRate": 12,
+      "currency": "INR",
+      "slug": "ashwagandha-root",
+      "name": "Ashwagandha Root Extract",
+      "sanskritName": "Ashwagandha",
+      "tagline": "Adaptogen for stress, sleep & stamina",
+      "category": "stress-sleep",
+      "form": "Capsules",
+      "description": "KSM-grade full-spectrum Withania somnifera root extract, standardised to 5% withanolides. Ashwagandha is a Rasayana herb traditionally used to calm the mind, support restful sleep and build strength and vitality.",
+      "benefits": [
+        "Helps the body adapt to everyday stress",
+        "Supports deeper, more restful sleep",
+        "Builds strength, stamina and muscle recovery",
+        "Supports healthy cortisol levels"
+      ],
+      "keyIngredients": [
+        {
+          "name": "Ashwagandha",
+          "latin": "Withania somnifera (root)",
+          "amount": "500 mg",
+          "role": "Adaptogen, Rasayana"
+        }
+      ],
+      "doshas": [
+        "Vata",
+        "Kapha"
+      ],
+      "dosage": "1 capsule twice daily after meals",
+      "howToUse": "Take with warm milk or water after breakfast and dinner. Use continuously for at least 8 weeks for best results.",
+      "precautions": [
+        "Not recommended during pregnancy.",
+        "Consult your physician if you have thyroid conditions or take sedatives."
+      ],
+      "variants": [
+        {
+          "sku": "ASH-60",
+          "label": "60 Capsules",
+          "price": 549,
+          "mrp": 699,
+          "stock": 120
+        },
+        {
+          "sku": "ASH-120",
+          "label": "120 Capsules",
+          "price": 949,
+          "mrp": 1299,
+          "stock": 80
+        }
+      ],
+      "images": [
+        "/products/ashwagandha-root.jpg"
+      ],
+      "rating": 4.7,
+      "reviewCount": 2184,
+      "tags": [
+        "adaptogen",
+        "sleep",
+        "energy",
+        "vegan"
+      ],
+      "certifications": [
+        "GMP Certified",
+        "Lab Tested",
+        "Vegan",
+        "Non-GMO"
+      ],
+      "shelfLife": "36 months from manufacture",
+      "storage": "Store in a cool, dry place away from direct sunlight.",
+      "isFeatured": true,
+      "isBestseller": true,
+      "faq": [
+        {
+          "q": "When will I notice results?",
+          "a": "Most people notice calmer energy and better sleep in 2–4 weeks; full benefits build over 8–12 weeks."
+        },
+        {
+          "q": "Can I take it with coffee?",
+          "a": "Yes, though taking it after meals with milk or water is traditional and gentler on the stomach."
+        }
+      ]
+    },
+    {
+      "brand": "Ayurveda",
+      "manufacturer": "Ayurveda Wellness Pvt. Ltd. (placeholder)",
+      "countryOfOrigin": "India",
+      "ayushLicense": "AYUSH-XX-0000 (placeholder)",
+      "gstRate": 12,
+      "currency": "INR",
+      "slug": "triphala-churna",
+      "name": "Triphala Churna",
+      "sanskritName": "Triphala",
+      "tagline": "The classical three-fruit gut cleanse",
+      "category": "digestion",
+      "form": "Churna (Powder)",
+      "description": "An equal blend of Amalaki, Bibhitaki and Haritaki - the three fruits of Triphala. One of the most widely used formulations in Ayurveda for gentle daily detoxification and regular, healthy digestion.",
+      "benefits": [
+        "Supports regular, comfortable bowel movement",
+        "Gentle daily detox without dependency",
+        "Rich in natural antioxidants and Vitamin C",
+        "Supports eye and oral health"
+      ],
+      "keyIngredients": [
+        {
+          "name": "Amalaki",
+          "latin": "Emblica officinalis (fruit)",
+          "amount": "33.3%",
+          "role": "Cooling, rejuvenating"
+        },
+        {
+          "name": "Bibhitaki",
+          "latin": "Terminalia bellirica (fruit)",
+          "amount": "33.3%",
+          "role": "Balances Kapha"
+        },
+        {
+          "name": "Haritaki",
+          "latin": "Terminalia chebula (fruit)",
+          "amount": "33.3%",
+          "role": "Mild laxative, balances Vata"
+        }
+      ],
+      "doshas": [
+        "Vata",
+        "Pitta",
+        "Kapha"
+      ],
+      "dosage": "3–5 g (1 teaspoon) at bedtime",
+      "howToUse": "Mix with a glass of warm water and drink before bed. Can also be soaked overnight and used as an eyewash infusion once strained.",
+      "precautions": [
+        "Avoid during pregnancy and with diarrhoea.",
+        "Reduce the dose if stools become too loose."
+      ],
+      "variants": [
+        {
+          "sku": "TRI-100",
+          "label": "100 g",
+          "price": 199,
+          "mrp": 249,
+          "stock": 200
+        },
+        {
+          "sku": "TRI-250",
+          "label": "250 g",
+          "price": 399,
+          "mrp": 499,
+          "stock": 140
+        }
+      ],
+      "images": [
+        "/products/triphala-churna.jpg"
+      ],
+      "rating": 4.6,
+      "reviewCount": 1520,
+      "tags": [
+        "digestion",
+        "detox",
+        "classical"
+      ],
+      "certifications": [
+        "GMP Certified",
+        "Lab Tested",
+        "Heavy-metal Tested"
+      ],
+      "shelfLife": "24 months from manufacture",
+      "storage": "Keep the pouch tightly sealed after opening.",
+      "isFeatured": true,
+      "isBestseller": true,
+      "faq": [
+        {
+          "q": "Is it habit forming?",
+          "a": "No. Triphala tones the digestive tract rather than forcing it, so it is suitable for long-term use."
+        }
+      ]
+    },
+    {
+      "brand": "Ayurveda",
+      "manufacturer": "Ayurveda Wellness Pvt. Ltd. (placeholder)",
+      "countryOfOrigin": "India",
+      "ayushLicense": "AYUSH-XX-0000 (placeholder)",
+      "gstRate": 12,
+      "currency": "INR",
+      "slug": "chyawanprash",
+      "name": "Chyawanprash Classic",
+      "sanskritName": "Chyawanprash",
+      "tagline": "40+ herb Rasayana jam with fresh amla",
+      "category": "immunity",
+      "form": "Avaleha (Herbal Jam)",
+      "description": "Slow-cooked to the classical Charaka Samhita recipe, our Chyawanprash combines fresh Amla with over 40 herbs, cow ghee, sesame oil and honey. A time-tested daily tonic for immunity, respiratory health and vitality for the whole family.",
+      "benefits": [
+        "Builds natural immunity through the seasons",
+        "Supports respiratory health",
+        "Rich source of natural Vitamin C",
+        "Daily vitality tonic for ages 3 and up"
+      ],
+      "keyIngredients": [
+        {
+          "name": "Amla",
+          "latin": "Emblica officinalis",
+          "amount": "~50%",
+          "role": "Primary Rasayana"
+        },
+        {
+          "name": "Ashwagandha",
+          "latin": "Withania somnifera",
+          "amount": "-",
+          "role": "Strength"
+        },
+        {
+          "name": "Pippali",
+          "latin": "Piper longum",
+          "amount": "-",
+          "role": "Respiratory support"
+        },
+        {
+          "name": "Cow Ghee & Honey",
+          "latin": "-",
+          "amount": "-",
+          "role": "Anupana (carrier)"
+        }
+      ],
+      "doshas": [
+        "Vata",
+        "Pitta",
+        "Kapha"
+      ],
+      "dosage": "Adults: 1–2 teaspoons daily. Children: ½ teaspoon",
+      "howToUse": "Take in the morning on an empty stomach, followed by a glass of warm milk.",
+      "precautions": [
+        "Contains sugar and honey - diabetics should consult a physician."
+      ],
+      "variants": [
+        {
+          "sku": "CHY-500",
+          "label": "500 g",
+          "price": 349,
+          "mrp": 399,
+          "stock": 160
+        },
+        {
+          "sku": "CHY-1000",
+          "label": "1 kg",
+          "price": 649,
+          "mrp": 749,
+          "stock": 90
+        }
+      ],
+      "images": [
+        "/products/chyawanprash-v2.jpg"
+      ],
+      "rating": 4.8,
+      "reviewCount": 3402,
+      "tags": [
+        "immunity",
+        "family",
+        "classical"
+      ],
+      "certifications": [
+        "GMP Certified",
+        "Lab Tested"
+      ],
+      "shelfLife": "24 months from manufacture",
+      "storage": "Use a dry spoon. Close the lid tightly after use.",
+      "isFeatured": true,
+      "isBestseller": true,
+      "faq": [
+        {
+          "q": "Can I take it in summer?",
+          "a": "Yes. Take a smaller dose (1 teaspoon) with cool milk during hot months."
+        }
+      ]
+    },
+    {
+      "brand": "Ayurveda",
+      "manufacturer": "Ayurveda Wellness Pvt. Ltd. (placeholder)",
+      "countryOfOrigin": "India",
+      "ayushLicense": "AYUSH-XX-0000 (placeholder)",
+      "gstRate": 12,
+      "currency": "INR",
+      "slug": "brahmi",
+      "name": "Brahmi Focus",
+      "sanskritName": "Brahmi",
+      "tagline": "Memory, focus and calm clarity",
+      "category": "stress-sleep",
+      "form": "Tablets",
+      "description": "Bacopa monnieri extract standardised to 20% bacosides, paired with Shankhpushpi. Brahmi is Ayurveda's foremost Medhya Rasayana - a herb for the intellect, used for memory, learning and a calm, focused mind.",
+      "benefits": [
+        "Supports memory and learning",
+        "Promotes calm, sustained focus",
+        "Helps manage mental fatigue",
+        "Non-stimulant - no caffeine crash"
+      ],
+      "keyIngredients": [
+        {
+          "name": "Brahmi",
+          "latin": "Bacopa monnieri (whole plant)",
+          "amount": "300 mg",
+          "role": "Medhya Rasayana"
+        },
+        {
+          "name": "Shankhpushpi",
+          "latin": "Convolvulus pluricaulis",
+          "amount": "100 mg",
+          "role": "Calming nervine"
+        }
+      ],
+      "doshas": [
+        "Vata",
+        "Pitta"
+      ],
+      "dosage": "1 tablet twice daily after meals",
+      "howToUse": "Take with water or warm milk. Effects on memory build gradually over 8–12 weeks.",
+      "precautions": [
+        "May cause mild stomach upset on an empty stomach - take after food."
+      ],
+      "variants": [
+        {
+          "sku": "BRA-60",
+          "label": "60 Tablets",
+          "price": 449,
+          "mrp": 549,
+          "stock": 110
+        }
+      ],
+      "images": [
+        "/products/brahmi.jpg"
+      ],
+      "rating": 4.5,
+      "reviewCount": 864,
+      "tags": [
+        "focus",
+        "memory",
+        "students"
+      ],
+      "certifications": [
+        "GMP Certified",
+        "Lab Tested",
+        "Vegan"
+      ],
+      "shelfLife": "36 months from manufacture",
+      "storage": "Store below 25°C in a dry place.",
+      "isFeatured": false,
+      "isBestseller": false,
+      "faq": []
+    },
+    {
+      "brand": "Ayurveda",
+      "manufacturer": "Ayurveda Wellness Pvt. Ltd. (placeholder)",
+      "countryOfOrigin": "India",
+      "ayushLicense": "AYUSH-XX-0000 (placeholder)",
+      "gstRate": 12,
+      "currency": "INR",
+      "slug": "tulsi-drops",
+      "name": "Panch Tulsi Drops",
+      "sanskritName": "Tulsi",
+      "tagline": "Five holy basils in one concentrated drop",
+      "category": "immunity",
+      "form": "Drops",
+      "description": "A concentrated extract of five Tulsi varieties - Rama, Shyama, Vana, Kapoor and Marua. Add a few drops to tea or water for everyday respiratory comfort and seasonal immunity.",
+      "benefits": [
+        "Supports respiratory comfort",
+        "Strengthens seasonal immunity",
+        "Natural antioxidant and adaptogen",
+        "Convenient - just add to tea or water"
+      ],
+      "keyIngredients": [
+        {
+          "name": "Rama & Shyama Tulsi",
+          "latin": "Ocimum sanctum",
+          "amount": "-",
+          "role": "Immunity, respiratory"
+        },
+        {
+          "name": "Vana Tulsi",
+          "latin": "Ocimum gratissimum",
+          "amount": "-",
+          "role": "Antioxidant"
+        },
+        {
+          "name": "Kapoor & Marua Tulsi",
+          "latin": "O. kilimandscharicum, O. basilicum",
+          "amount": "-",
+          "role": "Aromatic, decongestant"
+        }
+      ],
+      "doshas": [
+        "Vata",
+        "Kapha"
+      ],
+      "dosage": "2 drops in a cup of water or tea, twice daily",
+      "howToUse": "Shake well. Add to warm water, green tea or kadha.",
+      "precautions": [
+        "Do not take undiluted.",
+        "Avoid during pregnancy."
+      ],
+      "variants": [
+        {
+          "sku": "TUL-30",
+          "label": "30 ml",
+          "price": 179,
+          "mrp": 220,
+          "stock": 260
+        },
+        {
+          "sku": "TUL-60",
+          "label": "2 × 30 ml",
+          "price": 329,
+          "mrp": 440,
+          "stock": 150
+        }
+      ],
+      "images": [
+        "/products/tulsi-drops-v2.jpg"
+      ],
+      "rating": 4.6,
+      "reviewCount": 1210,
+      "tags": [
+        "immunity",
+        "respiratory",
+        "vegan"
+      ],
+      "certifications": [
+        "GMP Certified",
+        "Vegan"
+      ],
+      "shelfLife": "24 months from manufacture",
+      "storage": "Keep the cap tightly closed.",
+      "isFeatured": true,
+      "isBestseller": false,
+      "faq": []
+    },
+    {
+      "brand": "Ayurveda",
+      "manufacturer": "Ayurveda Wellness Pvt. Ltd. (placeholder)",
+      "countryOfOrigin": "India",
+      "ayushLicense": "AYUSH-XX-0000 (placeholder)",
+      "gstRate": 12,
+      "currency": "INR",
+      "slug": "himalayan-shilajit",
+      "name": "Himalayan Shilajit Resin",
+      "sanskritName": "Shilajatu",
+      "tagline": "Pure resin from 16,000 ft",
+      "category": "mens-wellness",
+      "form": "Resin",
+      "description": "Gold-grade Shilajit resin sourced above 16,000 ft in the Himalayas, purified (Shodhana) by the traditional Triphala-decoction method. Naturally rich in fulvic acid and over 80 trace minerals.",
+      "benefits": [
+        "Supports energy and physical endurance",
+        "Naturally rich in fulvic acid and trace minerals",
+        "Supports healthy testosterone in men",
+        "Classical Rasayana for healthy ageing"
+      ],
+      "keyIngredients": [
+        {
+          "name": "Purified Shilajit",
+          "latin": "Asphaltum punjabianum",
+          "amount": "100%",
+          "role": "Rasayana, Yogavahi"
+        }
+      ],
+      "doshas": [
+        "Vata",
+        "Kapha"
+      ],
+      "dosage": "300–500 mg (pea-sized) once daily",
+      "howToUse": "Dissolve a pea-sized portion in warm water or milk and drink in the morning. Use the included measuring spoon.",
+      "precautions": [
+        "Not for children, or during pregnancy or breastfeeding.",
+        "Consult a physician if you have gout or high uric acid."
+      ],
+      "variants": [
+        {
+          "sku": "SHI-20",
+          "label": "20 g",
+          "price": 1299,
+          "mrp": 1599,
+          "stock": 60
+        },
+        {
+          "sku": "SHI-40",
+          "label": "40 g",
+          "price": 2399,
+          "mrp": 3199,
+          "stock": 40
+        }
+      ],
+      "images": [
+        "/products/himalayan-shilajit.jpg"
+      ],
+      "rating": 4.7,
+      "reviewCount": 956,
+      "tags": [
+        "energy",
+        "men",
+        "minerals"
+      ],
+      "certifications": [
+        "Lab Tested",
+        "Heavy-metal Tested",
+        "Fulvic acid > 60%"
+      ],
+      "shelfLife": "36 months from manufacture",
+      "storage": "Resin may harden in cold weather - warm the jar slightly before use.",
+      "isFeatured": true,
+      "isBestseller": true,
+      "faq": [
+        {
+          "q": "Why is it hard sometimes and soft other times?",
+          "a": "Pure resin reacts to temperature - hard in the cold, sticky in the heat. That is a sign of authenticity."
+        }
+      ]
+    },
+    {
+      "brand": "Ayurveda",
+      "manufacturer": "Ayurveda Wellness Pvt. Ltd. (placeholder)",
+      "countryOfOrigin": "India",
+      "ayushLicense": "AYUSH-XX-0000 (placeholder)",
+      "gstRate": 12,
+      "currency": "INR",
+      "slug": "haridra-curcumin",
+      "name": "Haridra Curcumin + Piperine",
+      "sanskritName": "Haridra",
+      "tagline": "95% curcuminoids with black pepper for absorption",
+      "category": "joints",
+      "form": "Capsules",
+      "description": "Turmeric root extract standardised to 95% curcuminoids, combined with piperine from black pepper, which improves curcumin absorption. Supports joint comfort, healthy inflammatory response and radiant skin.",
+      "benefits": [
+        "Supports joint comfort and mobility",
+        "Supports a healthy inflammatory response",
+        "Powerful natural antioxidant",
+        "Piperine improves bioavailability"
+      ],
+      "keyIngredients": [
+        {
+          "name": "Haridra",
+          "latin": "Curcuma longa (rhizome)",
+          "amount": "500 mg",
+          "role": "Anti-inflammatory"
+        },
+        {
+          "name": "Maricha",
+          "latin": "Piper nigrum (piperine 95%)",
+          "amount": "5 mg",
+          "role": "Bio-enhancer"
+        }
+      ],
+      "doshas": [
+        "Kapha",
+        "Vata"
+      ],
+      "dosage": "1 capsule twice daily after meals",
+      "howToUse": "Take with water after food. Pairs well with Kaishore Guggulu for joint support.",
+      "precautions": [
+        "Consult a physician if you take blood thinners or have gallstones.",
+        "Avoid high doses during pregnancy."
+      ],
+      "variants": [
+        {
+          "sku": "HAR-60",
+          "label": "60 Capsules",
+          "price": 499,
+          "mrp": 649,
+          "stock": 140
+        }
+      ],
+      "images": [
+        "/products/haridra-curcumin.jpg"
+      ],
+      "rating": 4.5,
+      "reviewCount": 742,
+      "tags": [
+        "joints",
+        "antioxidant",
+        "vegan"
+      ],
+      "certifications": [
+        "GMP Certified",
+        "Lab Tested",
+        "Vegan"
+      ],
+      "shelfLife": "36 months from manufacture",
+      "storage": "Store in a cool, dry place.",
+      "isFeatured": false,
+      "isBestseller": false,
+      "faq": []
+    },
+    {
+      "brand": "Ayurveda",
+      "manufacturer": "Ayurveda Wellness Pvt. Ltd. (placeholder)",
+      "countryOfOrigin": "India",
+      "ayushLicense": "AYUSH-XX-0000 (placeholder)",
+      "gstRate": 12,
+      "currency": "INR",
+      "slug": "neem-purify",
+      "name": "Neem Purify",
+      "sanskritName": "Nimba",
+      "tagline": "Blood purifier for clear, healthy skin",
+      "category": "skin-hair",
+      "form": "Capsules",
+      "description": "Pure Neem leaf extract - Ayurveda's foremost Raktashodhaka (blood purifier). Supports clear skin from within by helping the body eliminate toxins that show up as breakouts.",
+      "benefits": [
+        "Supports clear, blemish-free skin",
+        "Natural blood purifier",
+        "Supports healthy blood sugar metabolism",
+        "Supports oral and gum health"
+      ],
+      "keyIngredients": [
+        {
+          "name": "Neem",
+          "latin": "Azadirachta indica (leaf)",
+          "amount": "500 mg",
+          "role": "Raktashodhaka, cooling"
+        }
+      ],
+      "doshas": [
+        "Pitta",
+        "Kapha"
+      ],
+      "dosage": "1 capsule twice daily after meals",
+      "howToUse": "Take with water. Give it 6–8 weeks to see visible skin changes.",
+      "precautions": [
+        "Not for pregnant women or couples trying to conceive.",
+        "Monitor blood sugar if you are on diabetes medication."
+      ],
+      "variants": [
+        {
+          "sku": "NEE-60",
+          "label": "60 Capsules",
+          "price": 299,
+          "mrp": 375,
+          "stock": 180
+        }
+      ],
+      "images": [
+        "/products/neem-purify-v2.jpg"
+      ],
+      "rating": 4.4,
+      "reviewCount": 631,
+      "tags": [
+        "skin",
+        "detox",
+        "vegan"
+      ],
+      "certifications": [
+        "GMP Certified",
+        "Vegan"
+      ],
+      "shelfLife": "36 months from manufacture",
+      "storage": "Store in a cool, dry place.",
+      "isFeatured": false,
+      "isBestseller": false,
+      "faq": []
+    },
+    {
+      "brand": "Ayurveda",
+      "manufacturer": "Ayurveda Wellness Pvt. Ltd. (placeholder)",
+      "countryOfOrigin": "India",
+      "ayushLicense": "AYUSH-XX-0000 (placeholder)",
+      "gstRate": 12,
+      "currency": "INR",
+      "slug": "giloy-immunity",
+      "name": "Giloy Ghanvati",
+      "sanskritName": "Guduchi",
+      "tagline": "The 'root of immortality' for everyday defence",
+      "category": "immunity",
+      "form": "Tablets",
+      "description": "Ghanvati (concentrated aqueous extract) of Tinospora cordifolia stem. Called Amrita in Sanskrit, Guduchi is a classical immunomodulator used for recurrent seasonal fevers and general resilience.",
+      "benefits": [
+        "Supports natural immune response",
+        "Traditionally used during seasonal changes",
+        "Supports liver health",
+        "Balances all three doshas"
+      ],
+      "keyIngredients": [
+        {
+          "name": "Guduchi",
+          "latin": "Tinospora cordifolia (stem)",
+          "amount": "500 mg",
+          "role": "Immunomodulator"
+        }
+      ],
+      "doshas": [
+        "Vata",
+        "Pitta",
+        "Kapha"
+      ],
+      "dosage": "1–2 tablets twice daily after meals",
+      "howToUse": "Take with lukewarm water.",
+      "precautions": [
+        "Consult a physician if you have an autoimmune condition.",
+        "Use under medical supervision for longer than 3 months."
+      ],
+      "variants": [
+        {
+          "sku": "GIL-60",
+          "label": "60 Tablets",
+          "price": 229,
+          "mrp": 280,
+          "stock": 210
+        }
+      ],
+      "images": [
+        "/products/giloy-immunity.jpg"
+      ],
+      "rating": 4.5,
+      "reviewCount": 1088,
+      "tags": [
+        "immunity",
+        "liver",
+        "vegan"
+      ],
+      "certifications": [
+        "GMP Certified",
+        "Lab Tested",
+        "Vegan"
+      ],
+      "shelfLife": "36 months from manufacture",
+      "storage": "Store in a cool, dry place.",
+      "isFeatured": false,
+      "isBestseller": true,
+      "faq": []
+    },
+    {
+      "brand": "Ayurveda",
+      "manufacturer": "Ayurveda Wellness Pvt. Ltd. (placeholder)",
+      "countryOfOrigin": "India",
+      "ayushLicense": "AYUSH-XX-0000 (placeholder)",
+      "gstRate": 12,
+      "currency": "INR",
+      "slug": "shatavari",
+      "name": "Shatavari Women's Balance",
+      "sanskritName": "Shatavari",
+      "tagline": "Hormonal balance at every stage of life",
+      "category": "womens-wellness",
+      "form": "Capsules",
+      "description": "Asparagus racemosus root extract, the primary Rasayana for the female reproductive system. Traditionally used to support hormonal balance, menstrual comfort, lactation and a smooth transition through menopause.",
+      "benefits": [
+        "Supports hormonal balance",
+        "Eases menstrual and menopausal discomfort",
+        "Traditionally used to support lactation",
+        "Cooling and nourishing for Pitta"
+      ],
+      "keyIngredients": [
+        {
+          "name": "Shatavari",
+          "latin": "Asparagus racemosus (root)",
+          "amount": "500 mg",
+          "role": "Female Rasayana"
+        }
+      ],
+      "doshas": [
+        "Vata",
+        "Pitta"
+      ],
+      "dosage": "1 capsule twice daily after meals",
+      "howToUse": "Take with warm milk for best results.",
+      "precautions": [
+        "Avoid with oestrogen-sensitive conditions unless advised by a doctor."
+      ],
+      "variants": [
+        {
+          "sku": "SHA-60",
+          "label": "60 Capsules",
+          "price": 399,
+          "mrp": 499,
+          "stock": 130
+        }
+      ],
+      "images": [
+        "/products/shatavari.jpg"
+      ],
+      "rating": 4.6,
+      "reviewCount": 702,
+      "tags": [
+        "women",
+        "hormones",
+        "vegan"
+      ],
+      "certifications": [
+        "GMP Certified",
+        "Lab Tested",
+        "Vegan"
+      ],
+      "shelfLife": "36 months from manufacture",
+      "storage": "Store in a cool, dry place.",
+      "isFeatured": true,
+      "isBestseller": false,
+      "faq": []
+    },
+    {
+      "brand": "Ayurveda",
+      "manufacturer": "Ayurveda Wellness Pvt. Ltd. (placeholder)",
+      "countryOfOrigin": "India",
+      "ayushLicense": "AYUSH-XX-0000 (placeholder)",
+      "gstRate": 12,
+      "currency": "INR",
+      "slug": "moringa-vital",
+      "name": "Moringa Leaf Powder",
+      "sanskritName": "Shigru",
+      "tagline": "A nutrient-dense green superfood",
+      "category": "immunity",
+      "form": "Churna (Powder)",
+      "description": "Shade-dried, cold-milled Moringa oleifera leaves from organic farms in Tamil Nadu. A natural source of plant protein, iron, calcium and vitamins A and C.",
+      "benefits": [
+        "Natural plant source of iron and calcium",
+        "Supports energy and reduces fatigue",
+        "Rich in antioxidants",
+        "Easy to add to smoothies, dals and rotis"
+      ],
+      "keyIngredients": [
+        {
+          "name": "Shigru",
+          "latin": "Moringa oleifera (leaf)",
+          "amount": "100%",
+          "role": "Nutritive"
+        }
+      ],
+      "doshas": [
+        "Vata",
+        "Kapha"
+      ],
+      "dosage": "1 teaspoon (3 g) daily",
+      "howToUse": "Stir into smoothies, juice, warm water or sprinkle over food.",
+      "precautions": [
+        "Avoid during pregnancy."
+      ],
+      "variants": [
+        {
+          "sku": "MOR-100",
+          "label": "100 g",
+          "price": 249,
+          "mrp": 299,
+          "stock": 170
+        },
+        {
+          "sku": "MOR-250",
+          "label": "250 g",
+          "price": 499,
+          "mrp": 649,
+          "stock": 90
+        }
+      ],
+      "images": [
+        "/products/moringa-vital.jpg"
+      ],
+      "rating": 4.4,
+      "reviewCount": 418,
+      "tags": [
+        "superfood",
+        "organic",
+        "vegan"
+      ],
+      "certifications": [
+        "USDA Organic (placeholder)",
+        "Lab Tested",
+        "Vegan"
+      ],
+      "shelfLife": "18 months from manufacture",
+      "storage": "Keep sealed and away from moisture.",
+      "isFeatured": false,
+      "isBestseller": false,
+      "faq": []
+    },
+    {
+      "brand": "Ayurveda",
+      "manufacturer": "Ayurveda Wellness Pvt. Ltd. (placeholder)",
+      "countryOfOrigin": "India",
+      "ayushLicense": "AYUSH-XX-0000 (placeholder)",
+      "gstRate": 12,
+      "currency": "INR",
+      "slug": "arjuna-heart",
+      "name": "Arjuna Heart Care",
+      "sanskritName": "Arjuna",
+      "tagline": "Bark extract for cardiovascular strength",
+      "category": "heart",
+      "form": "Capsules",
+      "description": "Terminalia arjuna bark extract - Ayurveda's classical Hridya (heart tonic). Supports healthy cardiac muscle function, healthy cholesterol levels and normal blood pressure.",
+      "benefits": [
+        "Supports heart muscle strength",
+        "Supports healthy cholesterol levels",
+        "Supports normal blood pressure",
+        "Rich in antioxidant flavonoids"
+      ],
+      "keyIngredients": [
+        {
+          "name": "Arjuna",
+          "latin": "Terminalia arjuna (bark)",
+          "amount": "500 mg",
+          "role": "Hridya (cardiotonic)"
+        }
+      ],
+      "doshas": [
+        "Pitta",
+        "Kapha"
+      ],
+      "dosage": "1 capsule twice daily after meals",
+      "howToUse": "Traditionally taken as Ksheerapaka - with warm milk.",
+      "precautions": [
+        "Do not replace prescribed heart medication.",
+        "Consult your cardiologist before use if you take BP or blood-thinning medication."
+      ],
+      "variants": [
+        {
+          "sku": "ARJ-60",
+          "label": "60 Capsules",
+          "price": 349,
+          "mrp": 449,
+          "stock": 100
+        }
+      ],
+      "images": [
+        "/products/arjuna-heart.jpg"
+      ],
+      "rating": 4.5,
+      "reviewCount": 389,
+      "tags": [
+        "heart",
+        "cholesterol",
+        "vegan"
+      ],
+      "certifications": [
+        "GMP Certified",
+        "Lab Tested",
+        "Vegan"
+      ],
+      "shelfLife": "36 months from manufacture",
+      "storage": "Store in a cool, dry place.",
+      "isFeatured": false,
+      "isBestseller": false,
+      "faq": []
+    },
+    {
+      "brand": "Ayurveda",
+      "manufacturer": "Ayurveda Wellness Pvt. Ltd. (placeholder)",
+      "countryOfOrigin": "India",
+      "ayushLicense": "AYUSH-XX-0000 (placeholder)",
+      "gstRate": 12,
+      "currency": "INR",
+      "slug": "bhringraj-hair-oil",
+      "name": "Bhringraj Hair Oil",
+      "sanskritName": "Bhringraj Taila",
+      "tagline": "Kshirapaka-method oil for stronger roots",
+      "category": "skin-hair",
+      "form": "Taila (Oil)",
+      "description": "Bhringraj, Amla, Brahmi and Neem slow-cooked in cold-pressed sesame and coconut oil using the Kshirapaka (milk-infusion) method. Nourishes the scalp, reduces hair fall and promotes calm, restful sleep.",
+      "benefits": [
+        "Reduces hair fall and strengthens roots",
+        "Nourishes a dry, flaky scalp",
+        "Supports natural hair colour",
+        "Cooling head massage aids sleep"
+      ],
+      "keyIngredients": [
+        {
+          "name": "Bhringraj",
+          "latin": "Eclipta alba",
+          "amount": "-",
+          "role": "Keshya (hair tonic)"
+        },
+        {
+          "name": "Amla",
+          "latin": "Emblica officinalis",
+          "amount": "-",
+          "role": "Strengthens follicles"
+        },
+        {
+          "name": "Brahmi",
+          "latin": "Bacopa monnieri",
+          "amount": "-",
+          "role": "Cooling, calming"
+        },
+        {
+          "name": "Sesame & Coconut oil",
+          "latin": "-",
+          "amount": "Base",
+          "role": "Carrier"
+        }
+      ],
+      "doshas": [
+        "Pitta",
+        "Vata"
+      ],
+      "dosage": "For external use only",
+      "howToUse": "Warm slightly and massage into the scalp. Leave on for 1 hour or overnight, then wash with a mild herbal shampoo. Use 2–3 times a week.",
+      "precautions": [
+        "For external use only.",
+        "Do a patch test before first use."
+      ],
+      "variants": [
+        {
+          "sku": "BHR-100",
+          "label": "100 ml",
+          "price": 299,
+          "mrp": 350,
+          "stock": 190
+        },
+        {
+          "sku": "BHR-200",
+          "label": "200 ml",
+          "price": 499,
+          "mrp": 650,
+          "stock": 120
+        }
+      ],
+      "images": [
+        "/products/bhringraj-hair-oil.jpg"
+      ],
+      "rating": 4.6,
+      "reviewCount": 1675,
+      "tags": [
+        "hair",
+        "external",
+        "sulphate-free"
+      ],
+      "certifications": [
+        "GMP Certified",
+        "Mineral-oil Free",
+        "Cruelty Free"
+      ],
+      "shelfLife": "24 months from manufacture",
+      "storage": "Store away from direct sunlight.",
+      "isFeatured": true,
+      "isBestseller": true,
+      "faq": []
+    },
+    {
+      "brand": "Ayurveda",
+      "manufacturer": "Ayurveda Wellness Pvt. Ltd. (placeholder)",
+      "countryOfOrigin": "India",
+      "ayushLicense": "AYUSH-XX-0000 (placeholder)",
+      "gstRate": 12,
+      "currency": "INR",
+      "slug": "kaishore-guggulu",
+      "name": "Kaishore Guggulu",
+      "sanskritName": "Kaishore Guggulu",
+      "tagline": "Classical formula for joint and skin health",
+      "category": "joints",
+      "form": "Tablets",
+      "description": "Prepared per Sharangadhara Samhita, Kaishore Guggulu combines purified Guggulu resin with Triphala and Guduchi. Traditionally used for joint comfort, healthy uric acid levels and clear skin.",
+      "benefits": [
+        "Supports joint comfort and flexibility",
+        "Supports healthy uric acid levels",
+        "Purifies blood and supports clear skin",
+        "Supports healthy metabolism"
+      ],
+      "keyIngredients": [
+        {
+          "name": "Shuddha Guggulu",
+          "latin": "Commiphora wightii (resin)",
+          "amount": "-",
+          "role": "Joint support, Lekhana"
+        },
+        {
+          "name": "Triphala",
+          "latin": "Three fruits",
+          "amount": "-",
+          "role": "Detox"
+        },
+        {
+          "name": "Guduchi",
+          "latin": "Tinospora cordifolia",
+          "amount": "-",
+          "role": "Pitta balance"
+        }
+      ],
+      "doshas": [
+        "Vata",
+        "Pitta"
+      ],
+      "dosage": "2 tablets twice daily after meals",
+      "howToUse": "Take with warm water.",
+      "precautions": [
+        "Avoid during pregnancy.",
+        "Use under medical supervision if you have thyroid conditions."
+      ],
+      "variants": [
+        {
+          "sku": "KAI-80",
+          "label": "80 Tablets",
+          "price": 279,
+          "mrp": 340,
+          "stock": 150
+        }
+      ],
+      "images": [
+        "/products/kaishore-guggulu-v2.jpg"
+      ],
+      "rating": 4.4,
+      "reviewCount": 296,
+      "tags": [
+        "joints",
+        "classical",
+        "skin"
+      ],
+      "certifications": [
+        "GMP Certified",
+        "Lab Tested"
+      ],
+      "shelfLife": "60 months from manufacture",
+      "storage": "Store in a cool, dry place.",
+      "isFeatured": false,
+      "isBestseller": false,
+      "faq": []
+    },
+    {
+      "brand": "Ayurveda",
+      "manufacturer": "Ayurveda Wellness Pvt. Ltd. (placeholder)",
+      "countryOfOrigin": "India",
+      "ayushLicense": "AYUSH-XX-0000 (placeholder)",
+      "gstRate": 12,
+      "currency": "INR",
+      "slug": "amla-juice",
+      "name": "Cold-Pressed Amla Juice",
+      "sanskritName": "Amalaki Swarasa",
+      "tagline": "Fresh Indian gooseberry, no added sugar",
+      "category": "digestion",
+      "form": "Juice",
+      "description": "Cold-pressed from hand-picked Banarasi Amla with no added sugar, colour or flavour. A natural source of Vitamin C for immunity, digestion, hair and skin.",
+      "benefits": [
+        "Natural source of Vitamin C",
+        "Supports digestion and metabolism",
+        "Supports healthy hair and skin",
+        "Cooling and balancing for Pitta"
+      ],
+      "keyIngredients": [
+        {
+          "name": "Amalaki",
+          "latin": "Emblica officinalis (fruit)",
+          "amount": "100%",
+          "role": "Rasayana, Vitamin C"
+        }
+      ],
+      "doshas": [
+        "Pitta",
+        "Vata",
+        "Kapha"
+      ],
+      "dosage": "20–30 ml diluted in water, daily",
+      "howToUse": "Mix with an equal amount of water and drink on an empty stomach in the morning. Shake well.",
+      "precautions": [
+        "Refrigerate after opening and consume within 30 days."
+      ],
+      "variants": [
+        {
+          "sku": "AML-500",
+          "label": "500 ml",
+          "price": 199,
+          "mrp": 250,
+          "stock": 220
+        },
+        {
+          "sku": "AML-1000",
+          "label": "1 L",
+          "price": 349,
+          "mrp": 450,
+          "stock": 140
+        }
+      ],
+      "images": [
+        "/products/amla-juice.jpg"
+      ],
+      "rating": 4.3,
+      "reviewCount": 540,
+      "tags": [
+        "vitamin-c",
+        "no-sugar",
+        "vegan"
+      ],
+      "certifications": [
+        "FSSAI (placeholder)",
+        "No Added Sugar",
+        "Vegan"
+      ],
+      "shelfLife": "12 months from manufacture",
+      "storage": "Refrigerate after opening.",
+      "isFeatured": false,
+      "isBestseller": false,
+      "faq": []
+    }
+  ],
+  "categories": [
+    {
+      "slug": "immunity",
+      "name": "Immunity",
+      "description": "Seasonal defence & daily Rasayana"
+    },
+    {
+      "slug": "stress-sleep",
+      "name": "Stress & Sleep",
+      "description": "Adaptogens for a calm, clear mind"
+    },
+    {
+      "slug": "digestion",
+      "name": "Digestion",
+      "description": "Agni, gut health & gentle detox"
+    },
+    {
+      "slug": "skin-hair",
+      "name": "Skin & Hair",
+      "description": "Beauty that starts from within"
+    },
+    {
+      "slug": "joints",
+      "name": "Joints & Mobility",
+      "description": "Comfort and flexibility"
+    },
+    {
+      "slug": "heart",
+      "name": "Heart Care",
+      "description": "Cardiovascular strength"
+    },
+    {
+      "slug": "mens-wellness",
+      "name": "Men's Wellness",
+      "description": "Energy, stamina & vitality"
+    },
+    {
+      "slug": "womens-wellness",
+      "name": "Women's Wellness",
+      "description": "Hormonal balance at every stage"
+    }
+  ]
+}

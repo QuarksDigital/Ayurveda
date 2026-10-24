@@ -10,7 +10,8 @@ import { CATEGORY_NAMES } from "@/lib/format";
 
 export async function generateStaticParams() {
   const products = await getProducts();
-  return products.map((p) => ({ slug: p.slug }));
+  // Cache Components requires at least one param; the placeholder renders a 404.
+  return products.length ? products.map((p) => ({ slug: p.slug })) : [{ slug: "__placeholder__" }];
 }
 
 export async function generateMetadata({ params }: PageProps<"/products/[slug]">): Promise<Metadata> {
